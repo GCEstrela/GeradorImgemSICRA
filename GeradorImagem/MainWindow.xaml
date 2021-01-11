@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeradorImagem"
         mc:Ignorable="d"
-        Title="Gerador de Imagens Credenciamento" Height="450" Width="800" Icon="img\Engrenagem.ico">
-    <Grid>
-        <Button x:Name="button" Content="Gerar imagem" HorizontalAlignment="Left" Margin="256,124,0,0" VerticalAlignment="Top" Width="213" Height="22" Click="button_Click"/>
-        <RadioButton x:Name="rbtEmpresa" Content="Empresa" HorizontalAlignment="Left" Margin="183,73,0,0" VerticalAlignment="Top" GroupName="tabela" IsChecked="True"/>
-        <RadioButton x:Name="rbtColaborador" Content="Colaborador" HorizontalAlignment="Left" Margin="303,73,0,0" VerticalAlignment="Top" GroupName="tabela"/>
-        <RadioButton x:Name="rbtVeiculo" Content="Veículo" HorizontalAlignment="Left" Margin="446,73,0,0" VerticalAlignment="Top" GroupName="tabela"/>
+        Title="Gerador de Imagens Credenciamento" Height="387.591" Width="441.971" Icon="img\Engrenagem.ico" ResizeMode="NoResize">
+    <Grid Height="330" VerticalAlignment="Top" Margin="0,0,0,-3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="323*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnGerarImagem" Content="Gerar imagem" HorizontalAlignment="Left" Margin="76,192,0,0" VerticalAlignment="Top" Width="293" Height="22" Click="button_Click"/>
+        <RadioButton x:Name="rbtEmpresa" Content="Empresa" HorizontalAlignment="Left" Margin="57,151,0,0" VerticalAlignment="Top" GroupName="tabela" IsChecked="True" Height="15" Width="64"/>
+        <RadioButton x:Name="rbtColaborador" Content="Colaborador" HorizontalAlignment="Left" Margin="177,151,0,0" VerticalAlignment="Top" GroupName="tabela" Height="15" Width="85"/>
+        <RadioButton x:Name="rbtVeiculo" Content="Veículo" HorizontalAlignment="Left" Margin="320,151,0,0" VerticalAlignment="Top" GroupName="tabela" Height="15" Width="57"/>
+        <Image x:Name="logo_ese_gif" Margin="0,14,113,0" Source="img\logo-ese.gif" Stretch="None" Grid.Column="0" HorizontalAlignment="Right" Height="63" VerticalAlignment="Top" Width="217"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="75" Margin="22,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Text="Utilize o arquivo CONEXAO.XML para informar os dados para importação: Servidor de banco de dados, usuario e senha, nome do banco, tabelas, nome da coluna da imagem, codigo do item e o caminho onde as pastas das imgens são criadas."/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="16,114,0,0" TextWrapping="Wrap" Text="Selecione de onde as imagens serao geradas" VerticalAlignment="Top" Height="26" Width="279"/>
+        <Label x:Name="lblControle" Content="Carregando imagens... " HorizontalAlignment="Left" Height="23" Margin="16,0,0,-16" Grid.Row="1" VerticalAlignment="Top" Width="128" Visibility="Hidden"/>
+
     </Grid>
 </Window>

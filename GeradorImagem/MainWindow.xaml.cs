@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace GeradorImagem
 {
@@ -46,9 +47,10 @@ namespace GeradorImagem
         {
             try
             {
+
                 using (DataSet dsResultado = new DataSet())
                 {
-
+                  
                     dsResultado.ReadXml(caminho + @"\conexao.xml");
                     if (dsResultado.Tables.Count > 0)
                     {
@@ -79,7 +81,7 @@ namespace GeradorImagem
                             tabela = dsResultado.Tables["Colaborador"].Rows[0]["Nome"].ToString(); ;
                             codigo = dsResultado.Tables["Colaborador"].Rows[0]["ColunaCodigo"].ToString(); ;
                             imagem = dsResultado.Tables["Colaborador"].Rows[0]["ColunaImagem"].ToString(); ;
-                            queryString = string.Format("select top(10) {0}, {1} from {2}", codigo, imagem, tabela);
+                            queryString = string.Format("select {0}, {1} from {2}", codigo, imagem, tabela);
                             pasta = "colaborador";
                         }
                         if (rbtVeiculo.IsChecked.Value)
@@ -87,7 +89,7 @@ namespace GeradorImagem
                             tabela = dsResultado.Tables["Veiculo"].Rows[0]["Nome"].ToString(); ;
                             codigo = dsResultado.Tables["Veiculo"].Rows[0]["ColunaCodigo"].ToString(); ;
                             imagem = dsResultado.Tables["Veiculo"].Rows[0]["ColunaImagem"].ToString(); ;
-                            queryString = string.Format("select top(10) {0}, {1} from {2}", codigo, imagem, tabela);
+                            queryString = string.Format("select  {0}, {1} from {2}", codigo, imagem, tabela);
                             pasta = "veiculo";
                         }
 
@@ -118,8 +120,12 @@ namespace GeradorImagem
 
                 MessageBox.Show("Erro ao gera imagens. Detalhe: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
 
-
+            }
+         
+            
         }
     }
 }
