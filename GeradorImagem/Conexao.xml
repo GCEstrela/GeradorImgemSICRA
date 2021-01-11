@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Conexao>
+  <Banco>
+    <Servidor>172.16.190.162\SQLEXPRESS</Servidor>
+    <Instancia>D_iModCredenciamento</Instancia>
+    <Usuario>imod</Usuario>
+    <Senha>imod</Senha>
+  </Banco>
+  <Empresa>
+    <Nome>Empresas</Nome>
+    <ColunaCodigo>EmpresaID</ColunaCodigo>
+    <ColunaImagem>Logo</ColunaImagem>
+  </Empresa>
+  <Colaborador>
+    <Nome>Colaboradores</Nome>
+    <ColunaCodigo>ColaboradorID</ColunaCodigo>
+    <ColunaImagem>Foto</ColunaImagem>
+  </Colaborador>
+  <Veiculo>
+    <Nome>Veiculos</Nome>
+    <ColunaCodigo>EquipamentoVeiculoID</ColunaCodigo>
+    <ColunaImagem>Foto</ColunaImagem>
+  </Veiculo>
+  <Caminho>c:\temp</Caminho>
+</Conexao>
+

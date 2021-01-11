@@ -1,0 +1,15 @@
+﻿<Window x:Class="GeradorImagem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GeradorImagem"
+        mc:Ignorable="d"
+        Title="Gerador de Imagens Credenciamento" Height="450" Width="800" Icon="img\Engrenagem.ico">
+    <Grid>
+        <Button x:Name="button" Content="Gerar imagem" HorizontalAlignment="Left" Margin="256,124,0,0" VerticalAlignment="Top" Width="213" Height="22" Click="button_Click"/>
+        <RadioButton x:Name="rbtEmpresa" Content="Empresa" HorizontalAlignment="Left" Margin="183,73,0,0" VerticalAlignment="Top" GroupName="tabela" IsChecked="True"/>
+        <RadioButton x:Name="rbtColaborador" Content="Colaborador" HorizontalAlignment="Left" Margin="303,73,0,0" VerticalAlignment="Top" GroupName="tabela"/>
+        <RadioButton x:Name="rbtVeiculo" Content="Veículo" HorizontalAlignment="Left" Margin="446,73,0,0" VerticalAlignment="Top" GroupName="tabela"/>
+    </Grid>
+</Window>
