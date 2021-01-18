@@ -13,11 +13,12 @@ namespace GeradorImagem
     public partial class MainWindow : Window
     {
 
-        private String caminho = AppDomain.CurrentDomain.BaseDirectory;
+        private String caminho = Util.caminho;
 
         public MainWindow()
         {
             InitializeComponent();
+            Util.EscreverArquivo(string.Format("Iniciando criação de imagens. {0}. " , DateTime.Now));
         }
 
 
@@ -33,12 +34,13 @@ namespace GeradorImagem
                 {
                     imageFile.Write(bytes, 0, bytes.Length);
                     imageFile.Flush();
+                    Util.EscreverArquivo(string.Format(" {0} - Imagem  {1} gerada com sucesso \n", DateTime.Now, nome));
                 }
+
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Util.EscreverArquivo(string.Format("{0} - Ocorreu na geração da imazgem.  - Codigo imagem: {1} . Detalhe {2}", DateTime.Now, nome,  ex.Message));
             }
 
         }
@@ -58,15 +60,14 @@ namespace GeradorImagem
                         string instancia = dsResultado.Tables["Banco"].Rows[0]["Instancia"].ToString();
                         string usuario = dsResultado.Tables["Banco"].Rows[0]["Usuario"].ToString();
                         string senha = dsResultado.Tables["Banco"].Rows[0]["Senha"].ToString();
-                        string MyConString = string.Format(@"Data Source= {0} ;Initial Catalog={1};User Id={2};Password={3};", servidor, instancia, usuario, senha);
+                        string MyConString = string.Format(@"Data Source= {0} ;Initial Catalog={1};User Id={2};Password={3};",
+                                                                                          servidor, instancia, usuario, senha);
                         string caminho = dsResultado.Tables["Conexao"].Rows[0]["Caminho"].ToString();
+                        Util.EscreverArquivo(string.Format("{0} - Pasta das imagens: {1}. \n", DateTime.Now, caminho+@"\FotosBH"));
 
                         SqlConnection connection = new SqlConnection(MyConString);
                         string queryString = string.Empty;
-                        string pasta = string.Empty;
-                        string tabela = string.Empty;
-                        string codigo = string.Empty;
-                        string imagem = string.Empty;
+                        string pasta = string.Empty, tabela = string.Empty, codigo = string.Empty, imagem = string.Empty;
 
                         if (rbtEmpresa.IsChecked.Value)
                         {
@@ -106,18 +107,24 @@ namespace GeradorImagem
                                     Exportarimagem(reader.GetString(1), caminho, reader.GetInt32(0).ToString(), pasta);
                                     totalRegistro++;
                                 }
+                                else
+                                {
+                                    Util.EscreverArquivo(string.Format(" {0} - Imagem  {1} não encontrada \n", DateTime.Now, reader.GetInt32(0).ToString()));
+                                }
 
                             }
                         }
 
+                        Util.EscreverArquivo(string.Format("{0} - Finalizando criação de imagens.  Total de imagens {1} \n", DateTime.Now, totalRegistro));
                         MessageBox.Show("Total de Imgens geradas: " + totalRegistro, "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+
                     }
                 }
             }
 
             catch (Exception ex)
             {
-
+                Util.EscreverArquivo(string.Format("{0} - Ocorreu Erro no processo.Detalhe {1} \n", DateTime.Now, ex.Message));
                 MessageBox.Show("Erro ao gera imagens. Detalhe: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
